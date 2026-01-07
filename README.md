@@ -5,6 +5,7 @@ Application météo en temps réel utilisant MQTT → Bridge Node.js (WebSocket)
 ## 📋 Description
 
 Ce projet consiste en un bridge Node.js qui :
+
 - Se connecte à un broker MQTT distant
 - Reçoit les données météo des capteurs (topic: `classroom/+/telemetry`)
 - Relay ces données en temps réel via WebSocket vers les clients connectés
@@ -17,12 +18,14 @@ Ce projet consiste en un bridge Node.js qui :
 ### Vérifier l'installation
 
 **macOS / Linux :**
+
 ```bash
 node --version
 npm --version
 ```
 
 **Windows (PowerShell ou CMD) :**
+
 ```cmd
 node --version
 npm --version
@@ -33,11 +36,13 @@ npm --version
 Si Node.js n'est pas installé :
 
 - **macOS** : Télécharger depuis [nodejs.org](https://nodejs.org/) ou utiliser Homebrew :
+
   ```bash
   brew install node
   ```
 
 - **Linux (Ubuntu/Debian) :**
+
   ```bash
   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
   sudo apt-get install -y nodejs
@@ -52,12 +57,14 @@ Si Node.js n'est pas installé :
 2. **Installer les dépendances**
 
    **macOS / Linux :**
+
    ```bash
    cd bridge
    npm install
    ```
 
    **Windows (PowerShell ou CMD) :**
+
    ```cmd
    cd bridge
    npm install
@@ -66,12 +73,14 @@ Si Node.js n'est pas installé :
 ## ▶️ Lancement du serveur
 
 **macOS / Linux :**
+
 ```bash
 cd bridge
 npm start
 ```
 
 **Windows (PowerShell ou CMD) :**
+
 ```cmd
 cd bridge
 npm start
@@ -80,6 +89,7 @@ npm start
 **Alternative :** Vous pouvez aussi utiliser directement `node server.js`
 
 Vous devriez voir :
+
 ```
 Server listening on http://localhost:8080
 Connected to MQTT broker
@@ -91,11 +101,13 @@ Subscribed to topic: classroom/+/telemetry
 ### Option 1 : wscat (recommandé)
 
 Installer wscat globalement :
+
 ```bash
 npm install -g wscat
 ```
 
 Puis tester :
+
 ```bash
 wscat -c ws://localhost:8080
 ```
@@ -103,22 +115,25 @@ wscat -c ws://localhost:8080
 ### Option 2 : Navigateur
 
 Ouvrir la console du navigateur et exécuter :
+
 ```javascript
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket("ws://localhost:8080");
 ws.onmessage = (event) => {
-  console.log('Message reçu:', JSON.parse(event.data));
+  console.log("Message reçu:", JSON.parse(event.data));
 };
 ```
 
 ## 📡 Configuration MQTT
 
 Le serveur est configuré pour se connecter à :
+
 - **Broker** : `mqtt://captain.dev0.pandor.cloud:1884`
 - **Topic** : `classroom/+/telemetry` (wildcard pour tous les devices)
 
 ### Publier des données de test
 
 Avec **MQTT Explorer** ou un client MQTT :
+
 - **Broker** : `captain.dev0.pandor.cloud`
 - **Port** : `1884`
 - **Topic** : `classroom/test-device/telemetry`
@@ -195,4 +210,3 @@ nodemon bridge/server.js
 ## 📄 Licence
 
 ISC
-
