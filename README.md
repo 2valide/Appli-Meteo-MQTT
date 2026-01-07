@@ -68,14 +68,16 @@ Si Node.js n'est pas installé :
 **macOS / Linux :**
 ```bash
 cd bridge
-node server.js
+npm start
 ```
 
 **Windows (PowerShell ou CMD) :**
 ```cmd
 cd bridge
-node server.js
+npm start
 ```
+
+**Alternative :** Vous pouvez aussi utiliser directement `node server.js`
 
 Vous devriez voir :
 ```
